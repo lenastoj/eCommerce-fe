@@ -26,8 +26,6 @@ const Login = () => {
         setError,
     } = useForm<LoginValues>();
 
-    const onSubmit: SubmitHandler<LoginValues> = (data) => console.log(data);
-
     const { login } = useContext(UserContext);
 
     const formSubmitHandler: SubmitHandler<LoginValues> = async (

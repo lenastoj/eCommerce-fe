@@ -4,6 +4,7 @@ import { User } from '../types/user.interface';
 import httpService from './http.service';
 import { AxiosInstance, AxiosError, AxiosResponse } from 'axios';
 import { ErrorLogin, ErrorRegister } from '../types/error.type';
+import { ROUTES } from '../utils/static';
 
 class AuthService {
     client: AxiosInstance;
@@ -14,21 +15,21 @@ class AuthService {
     login = async (credentials: LoginValues) => {
         const response = await this.client.post<
             AxiosResponse<User, AxiosError<ErrorLogin>>
-        >('/login', credentials);
+        >(ROUTES.LOGIN, credentials);
         return response.data;
     };
 
     register = async (userData: RegisterValues) => {
         const response = await this.client.post<
             AxiosResponse<User, AxiosError<ErrorRegister>>
-        >('/register', userData);
+        >(ROUTES.REGISTER, userData);
         return response.data;
     };
 
     logout = async () => {
         try {
             const response = await this.client.post<AxiosResponse<AxiosError>>(
-                '/logout'
+                ROUTES.LOGOUT
             );
             return response.data;
         } catch (error: any) {
