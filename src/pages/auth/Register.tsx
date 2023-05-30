@@ -27,8 +27,6 @@ const Register = () => {
         setError,
     } = useForm<RegisterValues>();
 
-    const onSubmit: SubmitHandler<RegisterValues> = (data) => console.log(data);
-
     const { login } = useContext(UserContext);
 
     const formSubmitHandler: SubmitHandler<RegisterValues> = async (
@@ -49,7 +47,6 @@ const Register = () => {
                         message: error.msg,
                     });
                 });
-                console.log(data);
             }
         }
     };
@@ -115,9 +112,6 @@ const Register = () => {
                             {errors.email?.message && (
                                 <span>{errors.email?.message}</span>
                             )}
-                            {/* {serverResponse?.errors && (
-                                <span>{serverResponse.errors.lastName?.message}</span>
-                            )} */}
                         </Grid>
                         <Grid item xs={12}>
                             <TextField

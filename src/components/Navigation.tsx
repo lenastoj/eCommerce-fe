@@ -17,8 +17,12 @@ const Navigation = () => {
     const { logout } = useContext(UserContext);
 
     const handleLogout = async () => {
-        const response = await authService.logout();
-        logout();
+        try {
+            logout();
+            await authService.logout();
+        } catch (error) {
+            console.log(error);
+        }
     };
     return (
         <Box>
