@@ -3,6 +3,8 @@ export const ROUTES = {
     REGISTER: '/register',
     LOGIN: '/login',
     LOGOUT: '/logout',
+    SHOES: '/shoes',
+    SHOE: '/shoes/:name',
 };
 
 export {};
