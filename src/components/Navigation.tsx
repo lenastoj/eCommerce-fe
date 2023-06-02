@@ -71,7 +71,6 @@ const Navigation = () => {
 
                         {user && (
                             <Button
-                                // href="/logout"
                                 variant="outlined"
                                 sx={{ my: 1, mx: 1.5 }}
                                 onClick={handleLogout}

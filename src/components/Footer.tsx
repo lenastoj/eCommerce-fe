@@ -9,7 +9,7 @@ const Footer = () => {
             align="center"
             sx={{
                 borderTop: (theme) => `1px solid ${theme.palette.divider}`,
-                mt: 8,
+                mt: 4,
                 py: [1, 2],
             }}
             justifyContent="center"
