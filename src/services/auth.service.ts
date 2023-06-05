@@ -3,7 +3,7 @@ import { RegisterValues } from '../types/register.type';
 import { User } from '../types/user.interface';
 import httpService from './http.service';
 import { AxiosInstance, AxiosError, AxiosResponse } from 'axios';
-import { ErrorLogin, ErrorRegister } from '../types/error.type';
+import { ErrorLogin, ErrorResponse } from '../types/error.type';
 import { ROUTES } from '../utils/static';
 
 class AuthService {
@@ -21,7 +21,7 @@ class AuthService {
 
     register = async (userData: RegisterValues) => {
         const response = await this.client.post<
-            AxiosResponse<User, AxiosError<ErrorRegister>>
+            AxiosResponse<User, AxiosError<ErrorResponse>>
         >(ROUTES.REGISTER, userData);
         return response.data;
     };

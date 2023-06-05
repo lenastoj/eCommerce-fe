@@ -1,4 +1,4 @@
-export interface ErrorRegister {
+export interface ErrorResponse {
     success: boolean;
     errors: ErrorReg[];
 }
