@@ -26,6 +26,12 @@ const PaginationComponent = ({
             disabled={isLoading}
             onChange={(e, value) => handleChange(value)}
             page={currentPage}
+            sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                pt: 5
+            }}
         />
     );
 };
