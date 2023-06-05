@@ -11,6 +11,7 @@ import { Outlet } from 'react-router-dom';
 import authService from '../services/auth.service';
 import UserContext from '../context/User.context';
 import { useContext } from 'react';
+import { ROUTES } from '../utils/static';
 
 const Navigation = () => {
     const { user } = useContext(UserContext);
@@ -51,7 +52,7 @@ const Navigation = () => {
                     <nav>
                         {!user && (
                             <Button
-                                href="/register"
+                                href={ROUTES.REGISTER}
                                 variant="outlined"
                                 sx={{ my: 1, mx: 1.5 }}
                             >
@@ -61,7 +62,7 @@ const Navigation = () => {
 
                         {!user && (
                             <Button
-                                href="/login"
+                                href={ROUTES.LOGIN}
                                 variant="outlined"
                                 sx={{ my: 1, mx: 1.5 }}
                             >

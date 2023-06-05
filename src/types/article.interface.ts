@@ -1,7 +1,7 @@
 export interface Article {
     id: number;
     name: string;
-    description: string;
+    description?: string;
     imageUrl: string;
     price: number;
     inStocke: boolean;
@@ -10,25 +10,15 @@ export interface Article {
     sizes: Size[];
 }
 
-export interface Articles {
-    id: number;
-    name: string;
-    imageUrl: string;
-    price: number;
-    inStocke: boolean;
-    gender: string;
-    colors: Color[];
-    sizes: Size[];
-}
 
-type Color = {
+export type Color = {
     id: number;
     name: string;
     createdAt: string;
     updatedAt: string;
 };
 
-type Size = {
+export type Size = {
     id: number;
     sizeShoe: number;
     createdAt: string;
@@ -42,7 +32,8 @@ export interface Metadata {
     total: number;
 }
 
-export interface ArticlesResponse {
-    data: Article[];
+
+export interface Pagination<D = any> {
+    data: D;
     metadata: Metadata;
 }
