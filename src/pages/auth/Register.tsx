@@ -11,7 +11,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import authService from '../../services/auth.service';
 import { RegisterValues } from '../../types/register.type';
 import { useContext } from 'react';
-import { ErrorRegister } from '../../types/error.type';
+import { ErrorResponse } from '../../types/error.type';
 import { AxiosError } from 'axios';
 import UserContext from '../../context/User.context';
 import useAuthGuard from '../../hooks/useAuthGuard';
@@ -39,7 +39,7 @@ const Register = () => {
                 login(user);
             }
         } catch (error: unknown) {
-            const errorData = error as AxiosError<ErrorRegister>;
+            const errorData = error as AxiosError<ErrorResponse>;
             const data = errorData.response?.data;
             if (data) {
                 data.errors.forEach((error) => {
