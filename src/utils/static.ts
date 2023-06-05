@@ -5,6 +5,12 @@ export const ROUTES = {
     LOGOUT: '/logout',
     SHOES: '/shoes',
     SHOE: '/shoes/:name',
+    CREATE_SHOE: '/create-shoe',
 };
 
-export {};
+export const QUERY_KEYS = {
+    ARTICLES: 'articles',
+    ARTICLE: 'article',
+};
+
+// export {};

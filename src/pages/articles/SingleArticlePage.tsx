@@ -17,25 +17,23 @@ import {
     ListItemText,
 } from '@mui/material';
 import { ROUTES } from '../../utils/static';
+import ArticleColors from '../../components/ArticleColors';
+import ArticleSizes from '../../components/ArticleSizes';
+import { useGetArticleQuery } from '../../queries/articles.query';
 
 const SingleArticlePage = () => {
-    const [article, setArticle] = useState<Article>();
     const { name } = useParams();
 
-    useEffect(() => {
-        const fetchArticle = async () => {
-            try {
-                const response = await articleService.get(name);
-                setArticle(response);
-            } catch (error) {
-                console.error('Error fetching article:', error);
-            }
-        };
-        fetchArticle();
-    }, []);
+    const {
+        isLoading,
+        error,
+        data: article,
+    } = useGetArticleQuery(name || '');
 
-    console.log(article);
-    console.log(name);
+    useEffect(() => {
+        console.log(article)
+    },[article])
+
     return (
         <Container>
             {article ? (
@@ -72,48 +70,9 @@ const SingleArticlePage = () => {
                             spacing={2}
                             justifyContent="space-between"
                         >
-                            {article.colors.length > 0 ? (
-                                <ListItem sx={{ display: 'table-row' }}>
-                                    <Typography>Available colors:</Typography>
-                                    {article.colors.map((color) => (
-                                        <ListItemText
-                                            key={color.id}
-                                            primary={color.name}
-                                            sx={{ display: 'list-item', ml: 2 }}
-                                        />
-                                    ))}
-                                </ListItem>
-                            ) : (
-                                <ListItem sx={{ display: 'table-row' }}>
-                                    <Typography>Available sizes:</Typography>
+                            <ArticleColors colors={article.colors} />
 
-                                    <ListItemText
-                                        primary="No available colors"
-                                        sx={{ display: 'list-item', ml: 2 }}
-                                    />
-                                </ListItem>
-                            )}
-                            {article.sizes.length > 0 ? (
-                                <ListItem sx={{ display: 'table-row' }}>
-                                    <Typography>Available sizes:</Typography>
-                                    {article.sizes.map((size) => (
-                                        <ListItemText
-                                            key={size.id}
-                                            primary={size.sizeShoe}
-                                            sx={{ display: 'list-item', ml: 2 }}
-                                        />
-                                    ))}
-                                </ListItem>
-                            ) : (
-                                <ListItem sx={{ display: 'table-row' }}>
-                                    <Typography>Available sizes:</Typography>
-
-                                    <ListItemText
-                                        primary="No available sizes"
-                                        sx={{ display: 'list-item', ml: 2 }}
-                                    />
-                                </ListItem>
-                            )}
+                            <ArticleSizes sizes={article.sizes} />
                         </Stack>
                         <Stack
                             sx={{ py: 4 }}
