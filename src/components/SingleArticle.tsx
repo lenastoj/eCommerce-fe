@@ -28,12 +28,12 @@ const SingleArticle = ({ article }: Props) => {
                     flexDirection: 'column',
                 }}
             >
-                <CardMedia
+                 <CardMedia
                     component="div"
                     sx={{
                         pt: '56.25%',
                     }}
-                    image={article.imageUrl}
+                    image={ `${ROUTES.IMAGES}${article.imageUrl}`}
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
                     <Typography
