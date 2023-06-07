@@ -2,12 +2,13 @@ import { Article, Pagination } from '../types/article.interface';
 import { ROUTES } from '../utils/static';
 import httpService from './http.service';
 
+
 export default class ArticleService {
     static client = httpService;
 
     static getAll = async (page = 1) => {
         return await this.client.request<Pagination<Article[]>>({
-            url: ROUTES.SHOES, // '/shoes'
+            url: ROUTES.SHOES,
             params: {page},
             method: 'GET',
         });
@@ -19,6 +20,14 @@ export default class ArticleService {
             method: 'GET',
         });
     };
+
+    static createArticle =async (formData: FormData) => {
+        return await this.client.request<Article>({
+            url: ROUTES.CREATE_SHOE,
+            data: formData,
+            method: 'POST',
+        })
+    }
 }
 
 

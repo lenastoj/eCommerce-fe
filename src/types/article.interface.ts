@@ -1,13 +1,18 @@
-export interface Article {
-    id: number;
+export interface ArticleDraft {
     name: string;
     description?: string;
     imageUrl: string;
     price: number;
-    inStocke: boolean;
+    inStock: boolean;
     gender: string;
+    userId: number;
     colors: Color[];
     sizes: Size[];
+
+}
+
+export interface Article extends ArticleDraft {
+    id: number;
 }
 
 
@@ -33,7 +38,7 @@ export interface Metadata {
 }
 
 
-export interface Pagination<D = any> {
+export interface Pagination<D = unknown> {
     data: D;
     metadata: Metadata;
 }
