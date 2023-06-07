@@ -13,7 +13,6 @@ const useUser = () => {
     const [user, setUser] = useState<User | undefined>(
         getItemFromStorage('user')
     );
-
     const login = (user: User) => {
         setUser(user);
         setItemToStorage('user', user);

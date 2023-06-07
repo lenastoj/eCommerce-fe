@@ -7,7 +7,6 @@ interface Props {
 }
 
 const ArticleSizes = ({ sizes }: Props) => {
-    console.log(sizes);
     return (
         <Box>
             {sizes.length > 0 ? (

@@ -50,6 +50,15 @@ const Navigation = () => {
                         eCommerce
                     </Typography>
                     <nav>
+                        {user?.user.isAdmin === true &&(
+                            <Button
+                                href={ROUTES.CREATE_SHOE}
+                                variant="outlined"
+                                sx={{ my: 1, mx: 1.5 }}
+                            >
+                                Add Article
+                            </Button>
+                        )}
                         {!user && (
                             <Button
                                 href={ROUTES.REGISTER}

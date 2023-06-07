@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEYS } from '../utils/static';
-import { Article, Pagination } from '../types/article.interface';
+import { Article, Pagination, Size } from '../types/article.interface';
 import { ErrorResponse } from '../types/error.type';
 import ArticleService from '../services/articles.service';
 
