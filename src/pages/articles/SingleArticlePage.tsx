@@ -1,8 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import articleService from '../../services/articles.service';
-import { Article } from '../../types/article.interface';
 
 import {
     Container,
@@ -13,8 +10,6 @@ import {
     Button,
     Box,
     Stack,
-    ListItem,
-    ListItemText,
 } from '@mui/material';
 import { ROUTES } from '../../utils/static';
 import ArticleColors from '../../components/ArticleColors';
@@ -24,24 +19,17 @@ import { useGetArticleQuery } from '../../queries/articles.query';
 const SingleArticlePage = () => {
     const { name } = useParams();
 
-    const {
-        isLoading,
-        error,
-        data: article,
-    } = useGetArticleQuery(name || '');
-
-    useEffect(() => {
-        console.log(article)
-    },[article])
-
+    const { error, data: article } = useGetArticleQuery(name || '');
     return (
         <Container>
-            {article ? (
+            {error ? (
+                <Typography>{error.errors[0].msg}</Typography>
+            ) : article ? (
                 <Card sx={{ display: 'flex', mt: 5 }}>
                     <CardMedia
                         component="img"
                         sx={{ width: 400, my: 'auto' }}
-                        image={article.imageUrl}
+                        image={`${ROUTES.IMAGES}${article.imageUrl}`}
                     />
                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                         <CardContent sx={{ flex: '1 0 auto' }}>

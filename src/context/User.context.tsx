@@ -1,8 +1,10 @@
 import { User } from '../types/user.interface';
 import { Context, createContext } from 'react'
 
+
+
 interface IUserContext {
-    user?: User ;
+    user?: User;
     setUser: (user: User) => void;
     login: (user: User) => void;
     logout: () => void;

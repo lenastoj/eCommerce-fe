@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Container, Grid } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 import SingleArticle from '../../components/SingleArticle';
 import { useGetArticlesQuery } from '../../queries/articles.query';
 import PaginationComponent from '../../components/Pagination';
@@ -34,21 +34,26 @@ const ArticlesPage = () => {
         setSearchParams(`?page=${params}`);
     }, [currentPage]);
 
-
     return (
         <Container sx={{ py: 8 }} maxWidth="md">
-            <Grid container spacing={4}>
-                {data?.data?.map((article) => (
-                    <SingleArticle key={article.id} article={article} />
-                ))}
-            </Grid>
+            {error ? (
+                <Typography>{error.errors[0].msg}</Typography>
+            ) : (
+                <Box>
+                    <Grid container spacing={4}>
+                        {data?.data?.map((article) => (
+                            <SingleArticle key={article.id} article={article} />
+                        ))}
+                    </Grid>
 
-            <PaginationComponent
-                setCurrentPage={setCurrentPage}
-                isLoading={isLoading}
-                totalPages={totalPages}
-                currentPage={currentPage}
-            />
+                    <PaginationComponent
+                        setCurrentPage={setCurrentPage}
+                        isLoading={isLoading}
+                        totalPages={totalPages}
+                        currentPage={currentPage}
+                    />
+                </Box>
+            )}
         </Container>
     );
 };
