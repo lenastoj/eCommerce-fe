@@ -8,13 +8,18 @@ export const ROUTES = {
     CREATE_SHOE: '/shoe',
     SIZES: '/sizes',
     COLORS: '/colors',
-    IMAGES: 'http://localhost:4000/static/'
+    CART: '/cart',
+    ADD_CART: '/add-cart',
+    CART_QUANTITY: '/quantity-cart',
+    CART_REMOVE_ARTICLE: '/article-cart',
+    CART_REMOVE_ARTICLES: '/cart',
+    IMAGES: 'http://localhost:4000/static/',
 };
 
 export const QUERY_KEYS = {
     ARTICLES: 'articles',
     ARTICLE: 'article',
     SIZES: 'sizes',
-    COLORS: 'colors'
+    COLORS: 'colors',
+    CART: 'cart',
 };
-

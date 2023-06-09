@@ -15,6 +15,7 @@ import { AxiosError } from 'axios';
 import UserContext from '../../context/User.context';
 import { useContext } from 'react';
 import useAuthGuard from '../../hooks/useAuthGuard';
+import CartContext from '../../context/Cart.context';
 
 const Login = () => {
     useAuthGuard({ authProtection: false });
@@ -27,6 +28,7 @@ const Login = () => {
     } = useForm<LoginValues>();
 
     const { login } = useContext(UserContext);
+    const { createCart } = useContext(CartContext);
 
     const formSubmitHandler: SubmitHandler<LoginValues> = async (
         data: LoginValues
@@ -36,6 +38,7 @@ const Login = () => {
             const user = response.data;
             if (user) {
                 login(user);
+                createCart();
             }
         } catch (error: unknown) {
             const errorData = error as AxiosError<ErrorLogin>;
