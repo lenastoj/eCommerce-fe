@@ -28,12 +28,12 @@ const SingleArticle = ({ article }: Props) => {
                     flexDirection: 'column',
                 }}
             >
-                 <CardMedia
+                <CardMedia
                     component="div"
                     sx={{
                         pt: '56.25%',
                     }}
-                    image={ `${ROUTES.IMAGES}${article.imageUrl}`}
+                    image={`${ROUTES.IMAGES}${article.imageUrl}`}
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
                     <Typography
@@ -62,8 +62,17 @@ const SingleArticle = ({ article }: Props) => {
                         </ListItem>
                     )}
                 </CardContent>
+                {article.inStock ? (
+                    <Typography sx={{ pl: 34, color: 'green' }}>
+                        In stock
+                    </Typography>
+                ) : (
+                    <Typography sx={{ pl: 30, color: 'red' }}>
+                        Out of stock
+                    </Typography>
+                )}
                 <Stack
-                    sx={{ pt: 4 }}
+                    sx={{ pt: 1 }}
                     direction="row"
                     spacing={2}
                     justifyContent="space-between"

@@ -35,7 +35,7 @@ const ArticlesPage = () => {
     }, [currentPage]);
 
     return (
-        <Container sx={{ py: 8 }} maxWidth="md">
+        <Container sx={{ py: 8 }} maxWidth="lg">
             {error ? (
                 <Typography>{error.errors[0].msg}</Typography>
             ) : (
