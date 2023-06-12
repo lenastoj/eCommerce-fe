@@ -20,13 +20,13 @@ import CartContext from '../../context/Cart.context';
 const SingleArticlePage = () => {
     const { name } = useParams();
 
-    const { cart, addCartArticle } = useContext(CartContext)
+    const { addCartArticle } = useContext(CartContext)
 
     const { error, data: article } = useGetArticleQuery(name || '');
     
     const handleAddToCart = async() => {
         try {
-            addCartArticle(article!);
+            addCartArticle(article!.id);
         } catch (error) {
             console.log(error)
         }

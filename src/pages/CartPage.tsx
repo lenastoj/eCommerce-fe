@@ -18,9 +18,11 @@ import {
     Select,
     MenuItem,
     OutlinedInput,
+    InputAdornment,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../utils/static';
+import { useState } from 'react';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -33,20 +35,21 @@ const MenuProps = {
     },
 };
 
-const availableQuantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const CartPage = () => {
-    const { cart, quantityArticle, removeArticle, removeArticles, totalPrice } =
+    const { cart, changeQuntity, removeArticle, removeArticles, totalPrice } =
         useContext(CartContext);
 
+    const [newQuantity, setNewQuantity] = useState<any>();
+
     const handleChangeQuantity = (
-        quantity: string | (number | undefined)[],
-        articleId: number
+        articleId: number,
+        quantity: string | (number | undefined)[]
     ) => {
-        quantityArticle(quantity, articleId);
+        changeQuntity(articleId, Number(quantity));
     };
 
-    return cart && cart.articles.length > 0 ? (
+    return cart && cart.articles?.length > 0 ? (
         <Container sx={{ py: 8 }} maxWidth="lg">
             <Box>
                 <Grid
@@ -82,7 +85,7 @@ const CartPage = () => {
                                     >
                                         {article.name}
                                     </Typography>
-                                    {article?.colors.length > 0 ? (
+                                    {article?.colors?.length > 0 ? (
                                         <ListItem sx={{ display: 'table-row' }}>
                                             {article.colors.map((color) => (
                                                 <ListItemText
@@ -152,38 +155,41 @@ const CartPage = () => {
                                             <FormControl
                                                 sx={{ width: 120, mr: 5 }}
                                             >
-                                                <InputLabel id="quantity">
-                                                    Quantity
-                                                </InputLabel>
-                                                <Select
-                                                    labelId="quantity"
-                                                    id="quantity"
-                                                    defaultValue={[
-                                                        article.CartArticle
-                                                            ?.quantity,
-                                                    ]}
-                                                    input={
-                                                        <OutlinedInput label="Quantity" />
-                                                    }
-                                                    MenuProps={MenuProps}
-                                                    onChange={(e) =>
-                                                        handleChangeQuantity(
-                                                            e.target.value,
-                                                            article.id
-                                                        )
-                                                    }
+                                                <FormControl
+                                                    sx={{
+                                                        display: 'flex',
+                                                        flexDirection: 'row',
+                                                    }}
                                                 >
-                                                    {availableQuantity.map(
-                                                        (i, index) => (
-                                                            <MenuItem
-                                                                key={index}
-                                                                value={i}
-                                                            >
-                                                                {i}
-                                                            </MenuItem>
-                                                        )
-                                                    )}
-                                                </Select>
+                                                    <InputLabel htmlFor="outlined-adornment-amount">
+                                                        Quantity
+                                                    </InputLabel>
+                                                    <OutlinedInput
+                                                        type="number"
+                                                        id="outlined-adornment-amount"
+                                                        label="Quantity"
+                                                        defaultValue={
+                                                            article.CartArticle
+                                                                ?.quantity
+                                                        }
+                                                        onChange={(e) =>
+                                                            setNewQuantity(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                    />
+
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleChangeQuantity(
+                                                                article.id,
+                                                                newQuantity
+                                                            )
+                                                        }
+                                                    >
+                                                        Change
+                                                    </Button>
+                                                </FormControl>
                                             </FormControl>
                                         </Grid>
                                     </Stack>

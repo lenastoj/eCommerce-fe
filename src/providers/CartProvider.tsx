@@ -8,11 +8,10 @@ const CartProvider = ({ children }: Props) => {
         cart,
         addCartArticle,
         totalPrice,
-        quantityArticle,
         removeArticle,
         removeArticles,
+        changeQuntity,
         refetch,
-        createCart,
     } = useCart();
 
     return (
@@ -21,11 +20,10 @@ const CartProvider = ({ children }: Props) => {
                 cart,
                 addCartArticle,
                 totalPrice,
-                quantityArticle,
                 removeArticle,
                 removeArticles,
+                changeQuntity,
                 refetch,
-                createCart,
             }}
         >
             {children}
