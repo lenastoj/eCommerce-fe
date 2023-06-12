@@ -11,33 +11,34 @@ const useCart = () => {
 
     const { data: cart, refetch } = useGetUserCartQuery();
 
-    const createCart = async () => {
-        await CartService.createUserCart();
-        refetch();
-    };
-
-    const addCartArticle = async (article: Article) => {
-        await CartService.addArticleToCart(cart!.id, article.id);
+    const addCartArticle = async (articleId: number, quantity = 1) => {
+        const articleExists = cart?.articles.find(
+            (article) => article.id === articleId
+        );
+        if (articleExists) {
+            const newQuantity = articleExists.CartArticle!.quantity + quantity;
+            await CartService.addArticleToCart(articleId, newQuantity);
+        } else {
+            await CartService.addArticleToCart(articleId, quantity);
+        }
         refetch();
         navigate(ROUTES.SHOES);
     };
 
-    const quantityArticle = async (
-        quantity: string | (number | undefined)[],
-        articleId: number
-    ) => {
-        await CartService.quantityArticleCart(quantity, articleId, cart!.id);
+    const changeQuntity = async (articleId: number, quantity: number) => {
+        await CartService.addArticleToCart(articleId, quantity);
         refetch();
     };
 
     const removeArticle = async (articleId: number) => {
-        await CartService.removeArticleFromCart(cart!.id, articleId);
+        await CartService.addArticleToCart(articleId, 0);
         refetch();
     };
 
     const removeArticles = async () => {
-        await CartService.removeAllFromCart(cart!.id);
+        await CartService.removeAllFromCart();
         refetch();
+        navigate(ROUTES.SHOES);
     };
 
     const getTotalPrice = () => {
@@ -49,12 +50,11 @@ const useCart = () => {
     return {
         cart,
         addCartArticle,
-        quantityArticle,
         totalPrice,
         removeArticle,
         removeArticles,
+        changeQuntity,
         refetch,
-        createCart,
     };
 };
 

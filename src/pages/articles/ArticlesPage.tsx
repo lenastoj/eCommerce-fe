@@ -41,9 +41,17 @@ const ArticlesPage = () => {
             ) : (
                 <Box>
                     <Grid container spacing={4}>
-                        {data?.data?.map((article) => (
-                            <SingleArticle key={article.id} article={article} />
-                        ))}
+                        {data?.data ? (
+                            data.data.map((article) => (
+                                <SingleArticle key={article.id} article={article} />
+                            ))
+                        ) : (
+                            <Typography>No articles</Typography>
+                        )}
+
+                        {/* {data?.data?.map((article) => (
+                        <SingleArticle key={article.id} article={article} />
+                         ))} */}
                     </Grid>
 
                     <PaginationComponent

@@ -24,6 +24,7 @@ const Navigation = () => {
     const { cart } = useContext(CartContext);
     const { logout } = useContext(UserContext);
 
+    console.log('nav',cart);
     const handleLogout = async () => {
         try {
             logout();
@@ -65,7 +66,7 @@ const Navigation = () => {
                             href={ROUTES.CART}
                         >
                             {user && (
-                                <Typography>{cart?.articles.length}</Typography>
+                                <Typography>{cart?.articles?.length}</Typography>
                             )}
 
                             <AddShoppingCartIcon />
