@@ -1,10 +1,8 @@
 import React from 'react';
 import UserContext from '../context/User.context';
 import useUser from '../hooks/useUser';
+import Props from '../types/props.interface';
 
-interface Props {
-    children: React.ReactNode;
-}
 
 const UserProvider = ({ children }: Props) => {
     const { user, setUser, login, logout } = useUser();

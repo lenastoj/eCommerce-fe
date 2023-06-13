@@ -1,22 +1,30 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import GlobalStyles from '@mui/material/GlobalStyles';
-import Container from '@mui/material/Container';
+import {
+    IconButton,
+    AppBar,
+    Box,
+    Button,
+    CssBaseline,
+    Toolbar,
+    Link,
+    GlobalStyles,
+    Container,
+    Typography,
+} from '@mui/material';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Outlet } from 'react-router-dom';
 import authService from '../services/auth.service';
 import UserContext from '../context/User.context';
 import { useContext } from 'react';
 import { ROUTES } from '../utils/static';
+import CartContext from '../context/Cart.context';
 
 const Navigation = () => {
     const { user } = useContext(UserContext);
+    const { cart } = useContext(CartContext);
     const { logout } = useContext(UserContext);
 
+    console.log('nav',cart);
     const handleLogout = async () => {
         try {
             logout();
@@ -41,16 +49,29 @@ const Navigation = () => {
                 }}
             >
                 <Toolbar sx={{ flexWrap: 'wrap' }}>
-                    <Typography
-                        variant="h6"
-                        color="inherit"
-                        noWrap
+                    <Link
+                        href={ROUTES.SHOES}
+                        underline="none"
                         sx={{ flexGrow: 1 }}
+                        paddingLeft={40}
+                        variant="h6"
                     >
                         eCommerce
-                    </Typography>
-                    <nav>
-                        {user?.user.isAdmin === true &&(
+                    </Link>
+                    <nav style={{ paddingRight: '400px' }}>
+                        <IconButton
+                            color="primary"
+                            aria-label="add to shopping cart"
+                            sx={{ mr: '15px' }}
+                            href={ROUTES.CART}
+                        >
+                            {user && (
+                                <Typography>{cart?.articles?.length}</Typography>
+                            )}
+
+                            <AddShoppingCartIcon />
+                        </IconButton>
+                        {user?.user.isAdmin === true && (
                             <Button
                                 href={ROUTES.CREATE_SHOE}
                                 variant="outlined"
@@ -59,6 +80,7 @@ const Navigation = () => {
                                 Add Article
                             </Button>
                         )}
+
                         {!user && (
                             <Button
                                 href={ROUTES.REGISTER}
