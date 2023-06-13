@@ -9,7 +9,7 @@ interface Props {
 const ArticleColors = ({ colors }: Props) => {
     return (
         <Box>
-            {colors.length > 0 ? ( <ListItem sx={{ display: 'table-row' }}>
+            {colors?.length > 0 ? ( <ListItem sx={{ display: 'table-row' }}>
             <Typography sx={{ ml: 2 }}>Available colors:</Typography>
             {colors.map((color) => (
                 <ListItemText

@@ -8,7 +8,7 @@ export interface ArticleDraft {
     userId: number;
     colors: Color[];
     sizes: Size[];
-
+    CartArticle?: {articleId: number, cartId: number, quantity: number}
 }
 
 export interface Article extends ArticleDraft {

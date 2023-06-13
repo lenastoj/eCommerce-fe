@@ -35,15 +35,23 @@ const ArticlesPage = () => {
     }, [currentPage]);
 
     return (
-        <Container sx={{ py: 8 }} maxWidth="md">
+        <Container sx={{ py: 8 }} maxWidth="lg">
             {error ? (
                 <Typography>{error.errors[0].msg}</Typography>
             ) : (
                 <Box>
                     <Grid container spacing={4}>
-                        {data?.data?.map((article) => (
-                            <SingleArticle key={article.id} article={article} />
-                        ))}
+                        {data?.data ? (
+                            data.data.map((article) => (
+                                <SingleArticle key={article.id} article={article} />
+                            ))
+                        ) : (
+                            <Typography>No articles</Typography>
+                        )}
+
+                        {/* {data?.data?.map((article) => (
+                        <SingleArticle key={article.id} article={article} />
+                         ))} */}
                     </Grid>
 
                     <PaginationComponent

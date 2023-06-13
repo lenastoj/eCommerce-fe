@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
@@ -15,11 +15,22 @@ import { ROUTES } from '../../utils/static';
 import ArticleColors from '../../components/ArticleColors';
 import ArticleSizes from '../../components/ArticleSizes';
 import { useGetArticleQuery } from '../../queries/articles.query';
+import CartContext from '../../context/Cart.context';
 
 const SingleArticlePage = () => {
     const { name } = useParams();
 
+    const { addCartArticle } = useContext(CartContext)
+
     const { error, data: article } = useGetArticleQuery(name || '');
+    
+    const handleAddToCart = async() => {
+        try {
+            addCartArticle(article!.id);
+        } catch (error) {
+            console.log(error)
+        }
+    }
     return (
         <Container>
             {error ? (
@@ -28,7 +39,7 @@ const SingleArticlePage = () => {
                 <Card sx={{ display: 'flex', mt: 5 }}>
                     <CardMedia
                         component="img"
-                        sx={{ width: 400, my: 'auto' }}
+                        sx={{ width: 400, my: 'auto', mr: 3 }}
                         image={`${ROUTES.IMAGES}${article.imageUrl}`}
                     />
                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -55,7 +66,7 @@ const SingleArticlePage = () => {
                         </CardContent>
                         <Stack
                             direction="row"
-                            spacing={2}
+                            spacing={50}
                             justifyContent="space-between"
                         >
                             <ArticleColors colors={article.colors} />
@@ -65,20 +76,36 @@ const SingleArticlePage = () => {
                         <Stack
                             sx={{ py: 4 }}
                             direction="row"
-                            spacing={2}
+                            spacing={50}
                             justifyContent="space-between"
                         >
                             <Button
                                 size="small"
                                 variant="outlined"
                                 href={`${ROUTES.SHOES}`}
+                                sx={{ ml: 2 }}
                             >
                                 Back
                             </Button>
                             <Typography sx={{ pr: 4, fontWeight: 'bold' }}>
-                                ${article.price}
+                                PRICE -- ${article.price}
                             </Typography>
                         </Stack>
+                        {article.inStock ? (
+                            <Button onClick={handleAddToCart} variant="contained" sx={{ mb: 2 }}>
+                            Add to cart
+                        </Button>
+                        ) : (
+                            <Button variant="outlined" color="error" disabled sx={{ mb: 2, ml: 2, "&.Mui-disabled": {
+                                borderColor: "#C2543B",
+                                color: "#C2543B",
+                              } }}>
+                            Out of stock
+                        </Button>
+                        )}
+                        
+                            
+                       
                     </Box>
                 </Card>
             ) : (

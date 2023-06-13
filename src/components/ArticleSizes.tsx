@@ -9,7 +9,7 @@ interface Props {
 const ArticleSizes = ({ sizes }: Props) => {
     return (
         <Box>
-            {sizes.length > 0 ? (
+            {sizes?.length > 0 ? (
                 <ListItem sx={{ display: 'table-row' }}>
                     <Typography sx={{  mr: 2 }}>Available sizes:</Typography>
                     {sizes.map((size) => (
