@@ -47,7 +47,7 @@ const SingleArticle = ({ article }: Props) => {
                     >
                         {article.name}
                     </Typography>
-                    {article?.colors?.length > 0 && (
+                    {article.colors && article?.colors?.length > 0 && (
                         <ListItem sx={{ display: 'table-row' }}>
                             {article.colors.map((color) => (
                                 <ListItemText

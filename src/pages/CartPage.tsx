@@ -15,26 +15,11 @@ import {
     Stack,
     FormControl,
     InputLabel,
-    Select,
-    MenuItem,
     OutlinedInput,
-    InputAdornment,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../utils/static';
 import { useState } from 'react';
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250,
-        },
-    },
-};
-
 
 const CartPage = () => {
     const { cart, changeQuntity, removeArticle, removeArticles, totalPrice } =
@@ -85,7 +70,7 @@ const CartPage = () => {
                                     >
                                         {article.name}
                                     </Typography>
-                                    {article?.colors?.length > 0 ? (
+                                    {article.colors && article?.colors?.length > 0 ? (
                                         <ListItem sx={{ display: 'table-row' }}>
                                             {article.colors.map((color) => (
                                                 <ListItemText
