@@ -55,27 +55,21 @@ const ArticlesPage = () => {
         const searchParamsUrl = new URLSearchParams();
         const params = currentPage.toString();
 
-        if (sort) {
-            searchParamsUrl.set('sort', sort);
-        }
+        sort && searchParamsUrl.set('sort', sort);
 
-        if (orderBy) {
-            searchParamsUrl.set('orderBy', orderBy);
-        }
+        orderBy && searchParamsUrl.set('orderBy', orderBy);
 
-        if (size && size.length > 0) {
+        size &&
+            size.length > 0 &&
             size.forEach((value) =>
                 searchParamsUrl.append('size', String(value))
             );
-        }
 
-        if (color && color.length > 0) {
+        color &&
+            color.length > 0 &&
             color.forEach((value) => searchParamsUrl.append('color', value!));
-        }
 
-        if (gender) {
-            searchParamsUrl.set('gender', gender);
-        }
+        gender && searchParamsUrl.set('gender', gender);
 
         setSearchParams(`?page=${params}&${searchParamsUrl.toString()}`);
     }, [currentPage, sort, orderBy, size, color, gender]);

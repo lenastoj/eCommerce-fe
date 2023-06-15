@@ -19,7 +19,6 @@ export const useGetArticleQuery = (name: string) => {
 }
 
 export const useSearchArticlesQuery = (searchParams: string | undefined) => {
-    console.log('query:', searchParams)
     return useQuery<Article[], ErrorResponse>([QUERY_KEYS.SEARCH_ARTICLES], async() => {
         return await ArticleService.search(searchParams);
     })
