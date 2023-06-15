@@ -3,11 +3,11 @@ export interface ArticleDraft {
     description?: string;
     imageUrl: string;
     price: number;
-    inStock: boolean;
+    inStock?: boolean;
     gender: string;
-    userId: number;
-    colors: Color[];
-    sizes: Size[];
+    userId?: number;
+    colors?: Color[];
+    sizes?: Size[];
     CartArticle?: {articleId: number, cartId: number, quantity: number}
 }
 
