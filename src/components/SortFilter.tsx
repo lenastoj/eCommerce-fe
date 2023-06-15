@@ -48,41 +48,23 @@ const SortFilter = ({
     const genderOptions = ['man', 'woman'];
 
     const handleChangeSize = (value: any) => {
-        if (value.includes('none')) {
-            setSize([]);
-            return;
-        }
-        setSize(value);
+        setSize(value.includes('none') ? [] : value);
     };
 
     const handleChangeColor = (value: any) => {
-        if (value.includes('none')) {
-            setColor([]);
-            return;
-        }
-        setColor(value);
+        setColor(value.includes('none') ? [] : value);
     };
 
     const handleChangeSort = (value: any) => {
-        if (value.includes('none')) {
-            setSort('');
-            return;
-        }
-        setSort(value);
+        setSort(value.includes('none') ? '' : value);
     };
+
     const handleChangeOrder = (value: any) => {
-        if (value.includes('none')) {
-            setOrderBy('');
-            return;
-        }
-        setOrderBy(value);
+        setOrderBy(value.includes('none') ? '' : value);
     };
+
     const handleChangeGender = (value: any) => {
-        if (value.includes('none')) {
-            setGender('');
-            return;
-        }
-        setGender(value);
+        setGender(value.includes('none') ? '' : value);
     };
 
     return (

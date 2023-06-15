@@ -2,24 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { Autocomplete, Stack, Box, TextField, Typography } from '@mui/material';
 import { useSearchArticlesQuery } from '../queries/articles.query';
 import { ROUTES } from '../utils/static';
+import { useDebounce } from 'use-debounce';
 
 const Search = () => {
     const [searchParams, setSearchParams] = useState('');
+    const [debouncedSearchParams] = useDebounce<string>(searchParams, 750)
+    const { data: articles, refetch } = useSearchArticlesQuery(searchParams);
 
-    const {
-        data: articles,
-        refetch,
-    } = useSearchArticlesQuery(searchParams);
-
-    const handleSearchParamsChange = (event: { preventDefault: () => void; }, value: React.SetStateAction<string>) => {
+    const handleSearchParamsChange = (
+        event: { preventDefault: () => void },
+        value: React.SetStateAction<string>
+    ) => {
         setSearchParams(value);
     };
 
     useEffect(() => {
-        refetch();
-    }, [searchParams]);
-    
-    
+            refetch();
+    }, [debouncedSearchParams]);
+
     return (
         <Stack sx={{ width: 300 }}>
             {articles && (
@@ -35,7 +35,6 @@ const Search = () => {
                             sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
                             {...props}
                         >
-    
                             <img
                                 loading="lazy"
                                 width="20"
@@ -60,7 +59,7 @@ const Search = () => {
                     renderInput={(params) => (
                         <TextField
                             {...params}
-                            label="Choose article"
+                            label="Search..."
                             inputProps={{
                                 ...params.inputProps,
                                 autoComplete: 'new-password',

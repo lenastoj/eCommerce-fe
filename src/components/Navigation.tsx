@@ -58,8 +58,8 @@ const Navigation = () => {
                     >
                         eCommerce
                     </Link>
+                    <Search />
                     <nav style={{ paddingRight: '400px' }}>
-                        <Search />
                         <IconButton
                             color="primary"
                             aria-label="add to shopping cart"
