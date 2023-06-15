@@ -18,13 +18,13 @@ import UserContext from '../context/User.context';
 import { useContext } from 'react';
 import { ROUTES } from '../utils/static';
 import CartContext from '../context/Cart.context';
+import Search from './Search';
 
 const Navigation = () => {
     const { user } = useContext(UserContext);
     const { cart } = useContext(CartContext);
     const { logout } = useContext(UserContext);
 
-    console.log('nav',cart);
     const handleLogout = async () => {
         try {
             logout();
@@ -58,6 +58,7 @@ const Navigation = () => {
                     >
                         eCommerce
                     </Link>
+                    <Search />
                     <nav style={{ paddingRight: '400px' }}>
                         <IconButton
                             color="primary"
@@ -65,8 +66,10 @@ const Navigation = () => {
                             sx={{ mr: '15px' }}
                             href={ROUTES.CART}
                         >
-                            {user && (
-                                <Typography>{cart?.articles?.length}</Typography>
+                            {user && cart && (
+                                <Typography>
+                                    {cart?.articles?.length}
+                                </Typography>
                             )}
 
                             <AddShoppingCartIcon />

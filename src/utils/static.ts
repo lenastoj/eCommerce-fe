@@ -5,6 +5,7 @@ export const ROUTES = {
     LOGOUT: '/logout',
     SHOES: '/shoes',
     SHOE: '/shoes/:name',
+    SEARCH_SHOES: '/search-shoes',
     CREATE_SHOE: '/shoe',
     SIZES: '/sizes',
     COLORS: '/colors',
@@ -19,6 +20,7 @@ export const ROUTES = {
 export const QUERY_KEYS = {
     ARTICLES: 'articles',
     ARTICLE: 'article',
+    SEARCH_ARTICLES: 'search_articles',
     SIZES: 'sizes',
     COLORS: 'colors',
     CART: 'cart',

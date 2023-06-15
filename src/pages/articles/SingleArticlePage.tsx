@@ -20,17 +20,17 @@ import CartContext from '../../context/Cart.context';
 const SingleArticlePage = () => {
     const { name } = useParams();
 
-    const { addCartArticle } = useContext(CartContext)
+    const { addCartArticle } = useContext(CartContext);
 
     const { error, data: article } = useGetArticleQuery(name || '');
-    
-    const handleAddToCart = async() => {
+
+    const handleAddToCart = async () => {
         try {
             addCartArticle(article!.id);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-    }
+    };
     return (
         <Container>
             {error ? (
@@ -69,9 +69,13 @@ const SingleArticlePage = () => {
                             spacing={50}
                             justifyContent="space-between"
                         >
-                            <ArticleColors colors={article.colors} />
+                            {article.colors && (
+                                <ArticleColors colors={article.colors} />
+                            )}
 
-                            <ArticleSizes sizes={article.sizes} />
+                            {article.sizes && (
+                                <ArticleSizes sizes={article.sizes} />
+                            )}
                         </Stack>
                         <Stack
                             sx={{ py: 4 }}
@@ -92,20 +96,30 @@ const SingleArticlePage = () => {
                             </Typography>
                         </Stack>
                         {article.inStock ? (
-                            <Button onClick={handleAddToCart} variant="contained" sx={{ mb: 2 }}>
-                            Add to cart
-                        </Button>
+                            <Button
+                                onClick={handleAddToCart}
+                                variant="contained"
+                                sx={{ mb: 2 }}
+                            >
+                                Add to cart
+                            </Button>
                         ) : (
-                            <Button variant="outlined" color="error" disabled sx={{ mb: 2, ml: 2, "&.Mui-disabled": {
-                                borderColor: "#C2543B",
-                                color: "#C2543B",
-                              } }}>
-                            Out of stock
-                        </Button>
+                            <Button
+                                variant="outlined"
+                                color="error"
+                                disabled
+                                sx={{
+                                    mb: 2,
+                                    ml: 2,
+                                    '&.Mui-disabled': {
+                                        borderColor: '#C2543B',
+                                        color: '#C2543B',
+                                    },
+                                }}
+                            >
+                                Out of stock
+                            </Button>
                         )}
-                        
-                            
-                       
                     </Box>
                 </Card>
             ) : (
