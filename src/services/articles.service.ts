@@ -1,4 +1,5 @@
-import { Article, Pagination } from '../types/article.interface';
+import { Article } from '../types/article.interface';
+import { Pagination } from '../types/pagination.interface';
 import { ROUTES } from '../utils/static';
 import httpService from './http.service';
 

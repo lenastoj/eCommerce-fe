@@ -8,7 +8,8 @@ export interface ArticleDraft {
     userId?: number;
     colors?: Color[];
     sizes?: Size[];
-    CartArticle?: {articleId: number, cartId: number, quantity: number}
+    CartArticle?: {articleId: number, cartId: number, quantity: number};
+    OrderArticle?: {quantity: number, orderId: number, articleId: number};
 }
 
 export interface Article extends ArticleDraft {
@@ -30,15 +31,4 @@ export type Size = {
     updatedAt: string;
 };
 
-export interface Metadata {
-    page: string | number;
-    paginationLimit: number;
-    count: number;
-    total: number;
-}
 
-
-export interface Pagination<D = unknown> {
-    data: D;
-    metadata: Metadata;
-}

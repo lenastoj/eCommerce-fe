@@ -8,6 +8,8 @@ import ArticlesPage from './pages/articles/ArticlesPage';
 import SingleArticlePage from './pages/articles/SingleArticlePage';
 import CreateArticle from './pages/articles/CreateArticle';
 import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
+import OrderPage from './pages/OrderPage';
 
 const AppRoutes = () => {
     return (
@@ -17,13 +19,15 @@ const AppRoutes = () => {
                     path={ROUTES.HOME}
                     element={<Navigate to={ROUTES.SHOES} replace />}
                 />
-
                 <Route path={ROUTES.REGISTER} element={<Register />} />
                 <Route path={ROUTES.LOGIN} element={<Login />} />
                 <Route path={ROUTES.SHOES} element={<ArticlesPage />} />
                 <Route path={ROUTES.SHOE} element={<SingleArticlePage />} />
                 <Route path={ROUTES.CREATE_SHOE} element={<CreateArticle />} />
                 <Route path={ROUTES.CART} element={<CartPage />} />
+                <Route path={ROUTES.CHECKOUT} element={<CheckoutPage />} />
+                <Route path={ROUTES.ORDERS} element={<OrderPage />} />
+
             </Route>
             <Route path="*" element={<p>Page not found</p>} />
         </Routes>
