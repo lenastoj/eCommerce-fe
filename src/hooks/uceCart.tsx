@@ -1,7 +1,6 @@
 import React from 'react';
 import { useGetUserCartQuery } from '../queries/cart.query';
 import CartService from '../services/cart.service';
-import { Article } from '../types/article.interface';
 import { getTotalPriceOfCart } from '../utils/helper';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../utils/static';

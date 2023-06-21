@@ -12,6 +12,7 @@ import {
     Typography,
 } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { Outlet } from 'react-router-dom';
 import authService from '../services/auth.service';
 import UserContext from '../context/User.context';
@@ -60,20 +61,34 @@ const Navigation = () => {
                     </Link>
                     <Search />
                     <nav style={{ paddingRight: '400px' }}>
-                        <IconButton
-                            color="primary"
-                            aria-label="add to shopping cart"
-                            sx={{ mr: '15px' }}
-                            href={ROUTES.CART}
-                        >
-                            {user && cart && (
-                                <Typography>
-                                    {cart?.articles?.length}
-                                </Typography>
-                            )}
+                        {user && (
+                            <IconButton
+                                color="primary"
+                                aria-label="add to shopping cart"
+                                sx={{ mr: '15px' }}
+                                href={ROUTES.CART}
+                            >
+                                {user && cart && (
+                                    <Typography>
+                                        {cart?.articles?.length}
+                                    </Typography>
+                                )}
 
-                            <AddShoppingCartIcon />
-                        </IconButton>
+                                <AddShoppingCartIcon />
+                            </IconButton>
+                        )}
+
+                        {user && (
+                            <IconButton
+                                color="primary"
+                                aria-label="aorders"
+                                sx={{ mr: '15px' }}
+                                href={ROUTES.ORDERS}
+                            >
+                                <LocalShippingIcon />
+                            </IconButton>
+                        )}
+
                         {user?.user.isAdmin === true && (
                             <Button
                                 href={ROUTES.CREATE_SHOE}

@@ -201,7 +201,7 @@ const CartPage = () => {
                     >
                         Remove all articles
                     </Button>
-                    <Button size="small" variant="outlined" color="success">
+                    <Button href={ROUTES.CHECKOUT} size="small" variant="outlined" color="success">
                         Checkout ${totalPrice}
                     </Button>
                 </Stack>
