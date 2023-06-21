@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEYS } from '../utils/static';
-import { Article, Pagination } from '../types/article.interface';
+import { Article } from '../types/article.interface';
 import { ErrorResponse } from '../types/error.type';
 import ArticleService from '../services/articles.service';
+import { Pagination } from '../types/pagination.interface';
 
 
 export const useGetArticlesQuery = (page: number, sort?: string, orderBy?: string, size?: string[], color?: string[], gender?: string) => {
