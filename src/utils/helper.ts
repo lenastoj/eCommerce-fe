@@ -6,4 +6,4 @@ export const getTotalPriceOfCart = (cart: Cart) => {
     }, 0);
   
     return totalPrice || 0;
-  };
+};

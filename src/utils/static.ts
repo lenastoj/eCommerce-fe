@@ -10,11 +10,13 @@ export const ROUTES = {
     SIZES: '/sizes',
     COLORS: '/colors',
     CART: '/cart',
+    ORDERS: '/orders',
     ADD_CART: '/add-cart',
     CART_QUANTITY: '/quantity-cart',
     CART_REMOVE_ARTICLE: '/article-cart',
     CART_REMOVE_ARTICLES: '/cart',
     IMAGES: 'http://localhost:4000/static/',
+    CHECKOUT: '/create-payment-intent',
 };
 
 export const QUERY_KEYS = {
@@ -24,4 +26,6 @@ export const QUERY_KEYS = {
     SIZES: 'sizes',
     COLORS: 'colors',
     CART: 'cart',
+    ORDERS: 'orders',
+    CHECKOUT: 'checkout'
 };
