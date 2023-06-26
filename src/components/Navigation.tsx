@@ -25,7 +25,7 @@ const Navigation = () => {
     const { user } = useContext(UserContext);
     const { cart } = useContext(CartContext);
     const { logout } = useContext(UserContext);
-
+    
     const handleLogout = async () => {
         try {
             logout();

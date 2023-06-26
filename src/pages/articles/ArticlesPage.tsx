@@ -8,6 +8,7 @@ import PaginationComponent from '../../components/Pagination';
 import SortFilter from '../../components/SortFilter';
 
 const ArticlesPage = () => {
+
     const [searchParams, setSearchParams] = useSearchParams();
 
     const pageFromURL = Number(searchParams.get('page')) || 1;

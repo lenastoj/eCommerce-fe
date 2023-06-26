@@ -1,6 +1,7 @@
 import { Article } from '../types/article.interface';
 import { Pagination } from '../types/pagination.interface';
 import { ROUTES } from '../utils/static';
+import AlgoliaService from './algolia.service';
 import httpService from './http.service';
 
 
@@ -15,12 +16,8 @@ export default class ArticleService {
         });
     };
 
-    static search = async (searchParams: string | undefined) => {
-        return await this.client.request<Article[]>({
-            url: ROUTES.SEARCH_SHOES,
-            data: {searchParams},
-            method: 'POST'
-        })
+    static search = async (searchParams: string ) => {
+        return await AlgoliaService.search('articles', searchParams)
     }
 
     static get = async (name: string) => {

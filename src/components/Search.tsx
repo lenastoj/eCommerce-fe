@@ -6,7 +6,7 @@ import { useDebounce } from 'use-debounce';
 
 const Search = () => {
     const [searchParams, setSearchParams] = useState('');
-    const [debouncedSearchParams] = useDebounce<string>(searchParams, 750)
+    const [debouncedSearchParams] = useDebounce<string>(searchParams, 750);
     const { data: articles, refetch } = useSearchArticlesQuery(searchParams);
 
     const handleSearchParamsChange = (
@@ -17,7 +17,7 @@ const Search = () => {
     };
 
     useEffect(() => {
-            refetch();
+        refetch();
     }, [debouncedSearchParams]);
 
     return (

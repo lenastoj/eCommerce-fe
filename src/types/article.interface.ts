@@ -16,6 +16,12 @@ export interface Article extends ArticleDraft {
     id: number;
 }
 
+export interface AlgoliaArticle {
+    objectID: string;
+    name: string;
+    price: number;
+    imageUrl: string;
+}
 
 export type Color = {
     id: number;

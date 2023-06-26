@@ -21,6 +21,7 @@ interface Props {
     gender: string;
     setGender: React.Dispatch<React.SetStateAction<string>>;
 }
+
 const SortFilter = ({
     sort,
     setSort,
@@ -69,13 +70,13 @@ const SortFilter = ({
 
     return (
         <div>
-            {errorColors || errorSizes ? (
+            {errorColors && errorColors.errors || errorSizes && errorSizes.errors ? (
                 <Typography>
                     {errorColors?.errors[0].msg} {errorSizes?.errors[0].msg}
                 </Typography>
             ) : (
                 <div>
-                    {!isLoadingColors && !isLoadingSizes && (
+                    {sizesData && sizesData.length > 0 && colorsData && colorsData.length > 0 && (
                         <div>
                             <FormControl
                                 variant="standard"
